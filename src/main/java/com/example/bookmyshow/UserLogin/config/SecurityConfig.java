@@ -32,14 +32,20 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                       // signup .. login  --> admin,user,everyone
                         .requestMatchers("/api/bookmyshow/auth/**")//these APIs are public.
                         .permitAll()   //no login required.
 
+                        // api handled by admin only like get all users
                         .requestMatchers("/api/bookmyshow/admin/**")
                         .hasRole("ADMIN")
 
+                        // api handled only by user
                         .requestMatchers("/api/bookmyshow/user/**")
                         .hasRole("USER")
+
+
+
                         .anyRequest().authenticated()  //every other API needs authentication.
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
