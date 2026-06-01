@@ -1,9 +1,11 @@
 package com.example.bookmyshow.MovieListing.schema;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +14,9 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.LastModifiedBy;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Data
@@ -27,6 +31,7 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     @Column(nullable = false)
     private String movieName;
 
@@ -34,10 +39,14 @@ public class Movie {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    private MovieGenre genre;
+    @Column(name = "movie_genre")
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<MovieGenre> genre;
 
     @Enumerated(EnumType.STRING)
-    private MovieLanguage language;
+    @Column(name = "movie_language")
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<MovieLanguage> language;
 
     @Enumerated(EnumType.STRING)
     private MovieFormat format;
@@ -46,14 +55,20 @@ public class Movie {
     @Max(10)
     private Double rating;
 
-    private LocalDateTime releaseDate;
+    private LocalDate releaseDate;
 
-    private String duration;
+    private String durationinminutes;
 
     @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updatedAt;
+
+    private List<String> likes;
+
+
 
 }

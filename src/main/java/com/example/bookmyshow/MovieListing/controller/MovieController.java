@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/movies")
+@RequestMapping("/api/bookmyshow/movies")
 @RequiredArgsConstructor
 public class MovieController {
 
     private final MovieService movieService;
 
     //create new movie
-    @PostMapping("/admin/addMovie")
-    public ResponseEntity<Movie> addMovie(MovieRequest movieRequest){
+    @PostMapping("/addMovie")
+    public ResponseEntity<Movie> addMovie(@RequestBody MovieRequest movieRequest){
         Movie createdMovie = movieService.addMovie(movieRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdMovie);
     }
@@ -33,7 +33,7 @@ public class MovieController {
     }
 
     //get movie by id
-    @GetMapping("{id}")
+    @GetMapping("/movie-by-id/{id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable Long id){
         return ResponseEntity.ok(movieService.getMovieWithId(id));
     }

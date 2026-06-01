@@ -3,11 +3,17 @@ package com.example.bookmyshow.MovieListing.dto;
 import com.example.bookmyshow.MovieListing.schema.MovieFormat;
 import com.example.bookmyshow.MovieListing.schema.MovieGenre;
 import com.example.bookmyshow.MovieListing.schema.MovieLanguage;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Builder
 public class MovieRequest {
@@ -16,9 +22,9 @@ public class MovieRequest {
 
     private String description;
 
-    private MovieGenre genre;
+    private List<MovieGenre> genre;
 
-    private MovieLanguage language;
+    private List<MovieLanguage> language;
 
     private MovieFormat format;
 
@@ -26,6 +32,6 @@ public class MovieRequest {
 
     private Double rating;
 
-    private LocalDateTime releaseDate;
+    private LocalDate releaseDate;
 
 }

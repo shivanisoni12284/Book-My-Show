@@ -3,7 +3,7 @@ package com.example.bookmyshow.MovieListing.schema;
 public enum MovieGenre {
     ACTION,
     COMEDIAN,
-    ROMANCE,
+    ROMANTIC,
     DRAMA,
     HORROR,
     THRILLER,
@@ -11,5 +11,6 @@ public enum MovieGenre {
     SCI_FI,
     FANTASY,
     ADVENTURE,
-    BIOGRAPHY
+    BIOGRAPHY,
+    MUSICAL
 }
