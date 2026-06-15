@@ -60,7 +60,7 @@ src -
 
 # Installations and SetUp
 -- Clone the Repository --
-git clone http
+[git clone http](https://github.com/shivanisoni12284/Book-My-Show.git)
             
 # Future Enhancement
 - Email Notifications
@@ -72,8 +72,7 @@ git clone http
 - Admin Dashboard
 - Seat Lock Expiration Scheduler
 
- shivanisoni12284
-Book-My-Show 
+
 
         
 
