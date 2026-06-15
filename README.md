@@ -1,6 +1,6 @@
 # BookMyShow clone
 
-# A movie ticket booking app, help users to book their desired movie ticket in desired theatre
+A movie ticket booking application that allows users to search for movies, select theatres and shows, reserve seats, make payments, and book tickets efficiently.
 
 # Features #
 
@@ -26,10 +26,11 @@
 2. Spring Boot
 3. Spring Data JPA
 4. Hibernate
-5. MySQL
+5. PostgreSQL
 6. Gradle
 7. Lombok
 8. JWT Authentication
+9. OAuth2 (Google & GitHub Login)
 
 # Project Structure
 
@@ -60,7 +61,65 @@ src -
 
 # Installations and SetUp
 -- Clone the Repository --
+
 [git clone http](https://github.com/shivanisoni12284/Book-My-Show.git)
+
+
+### Configure Database
+
+update --> application.yaml
+
+server:
+  port: 3000
+spring:
+  application:
+    name: bookmyshow
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bookmyshowapp
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope:
+              - email
+              - profile
+              - openid
+          github:
+            client-id: ${GITHUB_CLIENT_ID}
+            client-secret: ${GITHUB_CLIENT_SECRET}
+
+### Build and Run
+```bash
+gradlew build
+gradlew bootRun
+```
+
+The application will start on:
+```
+http://localhost:3000
+```
+
+### Enviroment Variable
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
             
 # Future Enhancement
 - Email Notifications
@@ -70,6 +129,8 @@ src -
 - Microservices Architecture
 - Recommendation System
 - Admin Dashboard
+- Booking History
+- Like Dislike module
 - Seat Lock Expiration Scheduler
 
 
