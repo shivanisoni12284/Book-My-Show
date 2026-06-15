@@ -3,6 +3,7 @@ package com.example.bookmyshow.show.schema;
 
 import com.example.bookmyshow.movie.schema.Movie;
 import com.example.bookmyshow.screen.schema.Screen;
+import com.example.bookmyshow.theatre.schema.Theatre;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,4 +36,8 @@ public class Show {
     @ManyToOne
     @JoinColumn(name = "show_screen_id")
     private Screen screen;
+
+    @ManyToOne
+    @JoinColumn(name = "theatre_id")
+    private Theatre theatre;
 }

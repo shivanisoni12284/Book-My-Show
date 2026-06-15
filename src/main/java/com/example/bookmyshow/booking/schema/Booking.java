@@ -2,12 +2,15 @@ package com.example.bookmyshow.booking.schema;
 
 import com.example.bookmyshow.show.schema.Show;
 import com.example.bookmyshow.showseat.schema.ShowSeat;
+import com.example.bookmyshow.ticket.schema.Ticket;
+import com.example.bookmyshow.userlogin.schema.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -33,10 +36,17 @@ public class Booking {
     )
     private List<ShowSeat> showSeats;
 
-    private Double totalPrice;
+    private BigDecimal totalPrice;
 
     @Enumerated(EnumType.STRING)
-    private BookedStatus booked;
+    private BookingStatus bookingStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL)
+    private Ticket ticket;
 
 
 }

@@ -1,11 +1,11 @@
 package com.example.bookmyshow.booking.dto;
 
-import com.example.bookmyshow.booking.schema.BookedStatus;
+import com.example.bookmyshow.booking.schema.BookingStatus;
 import com.example.bookmyshow.show.schema.Show;
 import com.example.bookmyshow.showseat.schema.ShowSeat;
-import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -18,7 +18,7 @@ public class BookingRequestDto {
 
     private List<ShowSeat> showSeats;
 
-    private Double totalPrice;
+    private BigDecimal totalPrice;
 
-    private BookedStatus booked;
+    private BookingStatus booked;
 }

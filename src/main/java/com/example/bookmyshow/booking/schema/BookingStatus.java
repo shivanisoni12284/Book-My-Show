@@ -1,11 +1,12 @@
 package com.example.bookmyshow.booking.schema;
 
-public enum BookedStatus {
+public enum BookingStatus {
 
     CANCELLED,
     PENDING,
     CONFIRMED,
     REFUNDED,
-    FAILED
+    FAILED,
+    PAYMENT_FAILED
 
 }

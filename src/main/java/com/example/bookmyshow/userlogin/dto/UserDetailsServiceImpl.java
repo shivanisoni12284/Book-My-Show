@@ -3,6 +3,7 @@ package com.example.bookmyshow.userlogin.dto;
 import com.example.bookmyshow.userlogin.repository.UserRepository;
 import com.example.bookmyshow.userlogin.schema.User;
 import lombok.RequiredArgsConstructor;
+import org.jspecify.annotations.NullMarked;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,6 +17,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 
     @Override
+    @NullMarked
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
          User user = userRepository.findByEmail(email).orElseThrow(() ->new UsernameNotFoundException("user not found"));
 

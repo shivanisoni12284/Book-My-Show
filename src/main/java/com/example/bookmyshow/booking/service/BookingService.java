@@ -1,16 +1,15 @@
 package com.example.bookmyshow.booking.service;
 
 import com.example.bookmyshow.booking.dto.BookingRequestDto;
-import com.example.bookmyshow.booking.repository.BoookingRepository;
-import com.example.bookmyshow.booking.schema.BookedStatus;
+import com.example.bookmyshow.booking.repository.BookingRepository;
+import com.example.bookmyshow.booking.schema.BookingStatus;
 import com.example.bookmyshow.booking.schema.Booking;
 import com.example.bookmyshow.execption.SeatAlreadyExistsException;
-import com.example.bookmyshow.execption.TheatreNotFoundException;
+import com.example.bookmyshow.notification.service.NotificationService;
 import com.example.bookmyshow.show.schema.Show;
 import com.example.bookmyshow.show.service.ShowService;
 import com.example.bookmyshow.showseat.schema.ShowSeat;
 import com.example.bookmyshow.showseat.service.ShowSeatService;
-import com.example.bookmyshow.theatre.schema.Theatre;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,9 +21,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookingService {
 
-    private final BoookingRepository boookingRepository;
+    private final BookingRepository bookingRepository;
     private final ShowService showService;
     private final ShowSeatService showSeatService;
+    private final NotificationService notificationService;
 
     @Transactional
     public Booking createBooking(BookingRequestDto bookingRequestDto){
@@ -54,28 +54,32 @@ public class BookingService {
         }
 
         Booking booking = Booking.builder()
-                .booked(BookedStatus.CONFIRMED)
+                .bookingStatus(BookingStatus.CONFIRMED)
                 .show(show)
                 .showSeats(bookedSeats)
                 .totalPrice(bookingRequestDto.getTotalPrice())
                 .build();
 
-        return boookingRepository.save(booking);
+        Booking savedBooking =  bookingRepository.save(booking);
+
+        notificationService.sendBookingConfirmation(savedBooking);
+        return savedBooking;
+
     }
 
     // get booking by id
     public Booking getBookingById(Long bookingId){
-        return boookingRepository.findById(bookingId).orElseThrow(() -> new RuntimeException("booking not found with id: "+bookingId));
+        return bookingRepository.findById(bookingId).orElseThrow(() -> new RuntimeException("booking not found with id: "+bookingId));
     }
 
     //find theatre by city
     public List<Booking> getAllBookings(){
-        return boookingRepository.findAll();
+        return bookingRepository.findAll();
     }
 
     // Delete theatre by id
     public void deleteBooking(Long bookingId){
         Booking booking = getBookingById(bookingId);
-        boookingRepository.delete(booking);
+        bookingRepository.delete(booking);
     }
 }

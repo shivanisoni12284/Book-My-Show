@@ -20,4 +20,5 @@ public interface MovieRepository extends JpaRepository<Movie,Long> {
     List<Movie> findByRating(String rating);
 
 
+    Movie findByMostBooked();
 }
