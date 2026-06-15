@@ -116,10 +116,12 @@ http://localhost:3000
 ```
 
 ### Enviroment Variable
+```
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
 GITHUB_CLIENT_ID=your_github_client_id
 GITHUB_CLIENT_SECRET=your_github_client_secret
+```
             
 # Future Enhancement
 - Email Notifications
