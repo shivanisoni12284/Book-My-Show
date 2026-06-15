@@ -62,13 +62,15 @@ src -
 # Installations and SetUp
 -- Clone the Repository --
 ```bash
-https://github.com/shivanisoni12284/Book-My-Show.git
+git clone https://github.com/shivanisoni12284/Book-My-Show.git
+cd Book-My-Show
 ```
 
 ### Configure Database
 
 update --> application.yaml
 
+```yaml
 server:
   port: 3000
 spring:
@@ -103,6 +105,7 @@ spring:
           github:
             client-id: ${GITHUB_CLIENT_ID}
             client-secret: ${GITHUB_CLIENT_SECRET}
+```
 
 ### Build and Run
 ```bash
