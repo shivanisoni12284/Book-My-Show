@@ -62,7 +62,7 @@ src -
 # Installations and SetUp
 -- Clone the Repository --
 ```bash
-[git clone http](https://github.com/shivanisoni12284/Book-My-Show.git)
+https://github.com/shivanisoni12284/Book-My-Show.git
 ```
 
 ### Configure Database
