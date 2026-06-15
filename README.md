@@ -60,7 +60,7 @@ src -
 9. User can Cancel the booking and receive a refund.
 
 # Installations and SetUp
--- Clone the Repository --
+### Clone the Repository 
 ```bash
 git clone https://github.com/shivanisoni12284/Book-My-Show.git
 cd Book-My-Show
@@ -68,7 +68,7 @@ cd Book-My-Show
 
 ### Configure Database
 
-update --> application.yaml
+update `application.yaml`:
 
 ```yaml
 server:
