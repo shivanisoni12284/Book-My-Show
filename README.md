@@ -61,9 +61,9 @@ src -
 
 # Installations and SetUp
 -- Clone the Repository --
-
+```
 [git clone http](https://github.com/shivanisoni12284/Book-My-Show.git)
-
+```
 
 ### Configure Database
 
